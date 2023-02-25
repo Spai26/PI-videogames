@@ -1,0 +1,1 @@
+/* info for images or any data */
