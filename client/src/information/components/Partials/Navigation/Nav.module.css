@@ -1,7 +1,21 @@
-.main {
+.nav_container {
   display: flex;
   width: 100%;
   height: 7vh;
-  justify-content: space-between;
   align-items: center;
+  border: 1px solid red;
+}
+
+.nav_content {
+  display: flex;
+  max-width: 1350px;
+  width: 100%;
+  justify-content: space-between;
+  margin: auto;
+}
+
+@media only screen and (max-width: 960px) {
+  .nav_content {
+    padding: 0 1rem;
+  }
 }

@@ -1,11 +1,13 @@
 import NavMovile from "../NavigationMovile/NavMovile";
+import styles from "./Nav.module.css";
 
 const Navigation = () => {
   return (
-    <header className="main">
-      <div>Logo</div>
-      <NavMovile />
-      <div>Buttons</div>
+    <header className={styles.nav_container}>
+      <div className={styles.nav_content}>
+        <div>Logo</div>
+        <NavMovile />
+      </div>
     </header>
   );
 };
