@@ -36,7 +36,6 @@ p {
 }
 
 img {
-  width: 100%;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -45,7 +44,7 @@ img {
 
 .App {
   min-height: 100vh;
-  
+
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
