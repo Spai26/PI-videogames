@@ -11,3 +11,4 @@ export const icons = {
   cross: icross,
   search: isearch,
 };
+
