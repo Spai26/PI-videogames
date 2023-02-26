@@ -1,16 +1,34 @@
 const express = require("express");
-const { API_KEY } = require("../db");
+const { API_KEY, URL_BASE, GAME } = require("../db");
 const game = express.Router();
 const axios = require("axios");
 
+/* charger all info */
 game.get("/", async (req, res) => {
-  try {
-    const result = await axios.get(
-      `https://api.rawg.io/api/games`
-    );
-    console.log(result.data.results.length);
-    res.json(result.data);
-  } catch (error) {}
+  let TakeAllVideogames = [];
+  let rawg_api = `${URL_BASE}${GAME}?key=${API_KEY}`;
+
+  /* take 20 register from api */
+  for (let i = 1; i <= 5; i++) {
+    let result = await axios.get(rawg_api);
+    /* containt next page with data */
+    rawg_api = result.data.next;
+    /* res.status(200).json({ data: result.data }); */
+    result.data.results.forEach((g) => {
+      TakeAllVideogames.push({
+        id: g.id,
+        name: g.name,
+        rating: g.rating,
+        image: g.background_image,
+        review: g.reviews_count,
+        released: g.released,
+        platforms: g.platforms.map((platform) => platform.platform.name),
+        genres: g.genres.map((genre) => genre.name),
+        store: g.stores.map((store) => store.store.name),
+      });
+    });
+  }
+  res.status(200).json(TakeAllVideogames);
 });
 
 game.get("/:id", async (req, res) => {
@@ -18,9 +36,7 @@ game.get("/:id", async (req, res) => {
   try {
     if (!isNaN(id)) {
       let keyId = Number(id);
-      const result = await axios.get(
-        `https://api.rawg.io/api/games/${keyId}?key=${API_KEY}`
-      );
+      const result = await axios.get(`${URL_BASE}/${keyId}?key=${API_KEY}`);
       const game = result.data;
       res.json({ data: game });
     }
