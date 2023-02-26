@@ -1,6 +1,10 @@
-/* info for images or any data */
-import bg_image from "../assets/img/onepiece.jpg";
+/* images from landing page */
 
-export const information_home = {
-  image: bg_image,
+/* icons form navigation  */
+import icross from "../assets/icons/cross.png";
+import ihamburger from "../assets/icons/hamburger.png";
+
+export const icons = {
+  hamburger: ihamburger,
+  cross: icross,
 };
