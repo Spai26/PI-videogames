@@ -10,7 +10,7 @@ const getAllvideogames = async (req, res) => {
     let result = await axios.get(rawg_api);
     /* containt next page with data */
     rawg_api = result.data.next;
-    /* res.status(200).json({ data: result.data }); */
+
     result.data.results.forEach((g) => {
       TakeAllVideogames.push({
         id: g.id,
@@ -22,11 +22,12 @@ const getAllvideogames = async (req, res) => {
         platforms: g.platforms.map((platform) => platform.platform.name),
         genres: g.genres.map((genre) => genre.name),
         store: g.stores.map((store) => store.store.name),
+        origin: "api",
       });
     });
   }
-  return TakeAllVideogames;
-  /* res.status(200).json(TakeAllVideogames); */
+  /* return TakeAllVideogames; */
+  res.status(200).json(TakeAllVideogames);
 };
 
 module.exports = {
