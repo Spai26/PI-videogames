@@ -1,8 +1,24 @@
 const axios = require("axios");
-const { API_KEY, URL_BASE, GAME } = require("../db");
+const { API_KEY, URL_BASE, GAME, Videogame, Genre } = require("../db");
 
 const getAllvideogames = async (req, res) => {
   let TakeAllVideogames = [];
+
+  let gameBD = await Videogame.findAll({ include: [Genre] });
+
+  gameBD.forEach((g) => {
+    TakeAllVideogames.push({
+      id: g.dataValues.id,
+      name: g.dataValues.name,
+      rating: g.dataValues.rating,
+      image: g.dataValues.image,
+      platform: g.dataValues.platform,
+      released: g.dataValues.date_up,
+      genre: g.dataValues.genre.map((g) => g.name),
+      origin: "bd",
+    });
+  });
+
   let rawg_api = `${URL_BASE}${GAME}?key=${API_KEY}`;
 
   /* take 20 register from api */
@@ -17,11 +33,9 @@ const getAllvideogames = async (req, res) => {
         name: g.name,
         rating: g.rating,
         image: g.background_image,
-        review: g.reviews_count,
         released: g.released,
         platforms: g.platforms.map((platform) => platform.platform.name),
         genres: g.genres.map((genre) => genre.name),
-        store: g.stores.map((store) => store.store.name),
         origin: "api",
       });
     });
