@@ -5,7 +5,7 @@ const {
 
 /**
  * TODO: Add new  videogame for database
- * @param {*} req
+ * @param {*} req.body
  */
 const handAddVideogame = async (req, res) => {
   try {
@@ -30,14 +30,15 @@ const handAddVideogame = async (req, res) => {
 
 /**
  * TODO: Take id from params for view detail videogame
- * @param {origin} "api || bd"
+ * @param {*} origin
+ * *  puede ser tanto api || bd
  */
 const handDetailVideogame = async (req, res) => {
   const { id } = req.params;
   const origin = isNaN(id) ? "bd" : "api";
   try {
-    const data = await getDetailVideogame(id, origin);
-    res.status(200).json(data);
+    const dataDetail = await getDetailVideogame(id, origin);
+    res.status(200).json(dataDetail);
   } catch (e) {
     res.status(400).json({ error: e.message });
   }

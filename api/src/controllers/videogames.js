@@ -1,11 +1,17 @@
 const axios = require("axios");
 const { API_KEY, URL_BASE, GAME, Videogame, Genre } = require("../db");
 
-const getAllvideogames = async (req, res) => {
+const getAllvideogames = async () => {
   let TakeAllVideogames = [];
+  let rawg_api = `${URL_BASE}${GAME}?key=${API_KEY}`;
 
-  let gameBD = await Videogame.findAll({ include: [Genre] });
-
+  let gameBD = await Videogame.findAll({
+    include: {
+      model: Genre,
+      attributes: ["name"],
+      through: { attributes: [] },
+    },
+  });
   gameBD.forEach((g) => {
     TakeAllVideogames.push({
       id: g.dataValues.id,
@@ -14,12 +20,10 @@ const getAllvideogames = async (req, res) => {
       image: g.dataValues.image,
       platform: g.dataValues.platform,
       released: g.dataValues.date_up,
-      genre: g.dataValues.genre.map((g) => g.name),
+      genre: g.dataValues.genres.map((genre) => genre.dataValues.name),
       origin: "bd",
     });
   });
-
-  let rawg_api = `${URL_BASE}${GAME}?key=${API_KEY}`;
 
   /* take 20 register from api */
   for (let i = 1; i <= 5; i++) {
@@ -34,14 +38,14 @@ const getAllvideogames = async (req, res) => {
         rating: g.rating,
         image: g.background_image,
         released: g.released,
-        platforms: g.platforms.map((platform) => platform.platform.name),
+        /* platforms: g.platforms.map((platform) => platform.platform.name), */
         genres: g.genres.map((genre) => genre.name),
         origin: "api",
       });
     });
   }
-  /* return TakeAllVideogames; */
-  res.status(200).json(TakeAllVideogames);
+  /* console.log([...TakeAllVideogames, ...gameBD]); */
+  return TakeAllVideogames;
 };
 
 module.exports = {
