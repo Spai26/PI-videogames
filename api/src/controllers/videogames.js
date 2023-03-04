@@ -37,8 +37,7 @@ const getAllvideogames = async () => {
         name: g.name,
         rating: g.rating,
         image: g.background_image,
-        released: g.released,
-        /* platforms: g.platforms.map((platform) => platform.platform.name), */
+        released: g.released,        
         genres: g.genres.map((genre) => genre.name),
         origin: "api",
       });
