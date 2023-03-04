@@ -8,16 +8,20 @@ const getGenres = async (req, res, next) => {
     });
 
     const genresApi = apiGenres.data.results;
-    genresApi.map(async (g) => {
-      await Genre.findOrCreate({
-        where: { name: g.name },
-        defaults: {
-          id: g.id,
-          name: g.name,
-        },
-      });
-    });
-    res.json({ data: genresApi });
+
+    const genresBD = await Promise.all(
+      genresApi.map(async (g) => {
+        const [genre, created] = await Genre.findOrCreate({
+          where: { name: g.name },
+          defaults: {
+            id: g.id,
+            name: g.name,
+          },
+        });
+        return genre.toJSON(); // Devuelve los datos del registro creado/actualizado
+      })
+    );
+    res.json({ data: genresBD });
   } catch (e) {
     (e) => {
       next(e);
