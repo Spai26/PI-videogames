@@ -22,7 +22,7 @@ const handAddVideogame = async (req, res) => {
       genres
     );
 
-    res.status(201).json(newVideogame);
+    res.status(201).json({ data: "videogame created" });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
@@ -35,10 +35,12 @@ const handAddVideogame = async (req, res) => {
  */
 const handDetailVideogame = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   const origin = isNaN(id) ? "bd" : "api";
   try {
     const dataDetail = await getDetailVideogame(id, origin);
-    res.status(200).json(dataDetail);
+
+    res.status(200).json({ data: dataDetail });
   } catch (e) {
     res.status(400).json({ error: e.message });
   }
