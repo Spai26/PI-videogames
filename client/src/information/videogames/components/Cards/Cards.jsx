@@ -1,10 +1,20 @@
 import styles from "./Cards.module.css";
 import Card from "../Card/Card";
-const Cards = () => {
+const Cards = ({ videogames }) => {
   return (
     <div className={styles.gallery}>
-      this cards
-      <Card />
+      {videogames.map((game, index) => (
+        <Card
+          key={index}
+          id={game.id}
+          name={game.name}
+          rating={game.rating}
+          released={game.released}
+          image={game.image}
+          origin={game.origin}
+          genres={game.genres}
+        />
+      ))}
     </div>
   );
 };
