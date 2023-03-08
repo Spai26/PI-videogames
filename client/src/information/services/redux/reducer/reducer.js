@@ -1,4 +1,5 @@
 import {
+  ADD_VIDEOGAME,
   GET_GENRES,
   GET_VIDEOGAMES,
   GET_VIDEOGAME_DETAIL,
@@ -26,6 +27,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         videogameDetail: action.payload.data,
+      };
+
+    case ADD_VIDEOGAME:
+      return {
+        ...state,
       };
     default:
       return {
