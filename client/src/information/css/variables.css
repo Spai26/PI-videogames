@@ -1,5 +1,12 @@
 /* import styles text */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap");
 
-:root{
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+:root {
+  --font-primary: "Roboto Mono", monospace;
+  --font-body: "Poppins", sans-serif;
+  --border-general: 5px;
+  --color-base: #fff;
+  --color-primary: #6c757d;
 }

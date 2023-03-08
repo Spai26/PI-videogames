@@ -10,6 +10,8 @@ import logo from "../assets/icons/gamer.png";
 import inext from "../assets/icons/next_1.svg";
 import ileft from "../assets/icons/left.svg";
 import iadd from "../assets/icons/icons8-add-48.svg";
+import istar from "../assets/icons/star-svgrepo-com.svg";
+import istarYellow from "../assets/icons/istar.svg";
 export const icons = {
   logo: logo,
   hamburger: ihamburger,
@@ -20,4 +22,6 @@ export const icons = {
   next: inext,
   after: ileft,
   add: iadd,
+  start: istar,
+  startYellow: istarYellow,
 };
