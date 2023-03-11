@@ -6,16 +6,25 @@
 *::after {
   box-sizing: border-box;
 }
-
+html,
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  max-width: 100%;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  width: 100%;
+  height: 100%;
 }
 
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--bg-primary);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--bg-secundary);
+}
 a,
 a:active,
 a:visited {
@@ -45,10 +54,61 @@ img {
 }
 
 .App {
+  width: 100%;
   min-height: 100vh;
-
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-color: var(--bg-primary);
+  color: var(--color-base);
+}
+
+.btn_basic {
+  width: 250px;
+  text-decoration: none;
+  border: none;
+  color: var(--color-base);
+  font-size: 25px;
+  border-radius: 5px;
+  background-color: var(--bg-secundary);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.btn_basic:hover {
+  background-color: red;
+}
+
+.error,
+.landing .loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error,
+.landing {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../assets/img/moon_over_mondstadt.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home {
+  scroll-behavior: smooth;
 }

@@ -3,10 +3,20 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap");
+
 :root {
+  font-family: "Inter, sans-serif";
+  font-size: 16px;
   --font-primary: "Roboto Mono", monospace;
-  --font-body: "Poppins", sans-serif;
+  --font-secundary: "Poppins", sans-serif;
   --border-general: 5px;
   --color-base: #fff;
   --color-primary: #6c757d;
+  --color-secundary: #333;
+  --color-ternary: red;
+  --bg-primary: #121212;
+  --bg-secundary: #2a2a2a;
+  --max-content: 1500px;
+  --transition-speed: 600ms;
 }
