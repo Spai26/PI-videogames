@@ -1,7 +1,9 @@
-.start {
+main {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: var(--max-content);
+  color: var(--color-base);
+  gap: 1rem;
+  margin: auto;
 }
-
