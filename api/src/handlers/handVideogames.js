@@ -1,27 +1,33 @@
-const { getAllvideogames } = require("../controllers/videogames");
-const { searchGame } = require("../controllers/searchGame");
+const {
+  getAllvideogames,
+} = require("../controllers/requestVideogame/videogames");
+const { searchGame } = require("../controllers/requestVideogame/searchGame");
+
 /**
- * TODO: take all videogame from DB and API
- * @param {*} Videogame
- * * content all videogames from api and bd
+ * TODO: midleware videogames
+ * @param {*} req.query
+ * ? puede recibir o no query
+ * ! extrae todos los videogames API && BD
+ * ! consultar el nombre de videogames
  */
 const handGetAllVideogames = async (req, res, next) => {
-  const search = req.query.name;
-
-  /* if (search) {
+  const name = req.query.name;
+  if (name) {
+    console.log("entro en search");
     try {
-      const result = await searchGame(search);
-      res.status(200).json(result);
+      const results = await searchGame(name);
+      return res.json(results);
     } catch (e) {
       next(e);
     }
-  } */
+  }
 
   try {
-    const result = await getAllvideogames();
-    res.status(200).json({ data: result });
+    console.log("entro en general");
+    const results = await getAllvideogames();
+    res.status(200).json({ data: results });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+    next(e);
   }
 };
 

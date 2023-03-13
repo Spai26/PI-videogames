@@ -4,18 +4,21 @@ const {
 } = require("../controllers/videogame");
 
 /**
- * TODO: Add new  videogame for database
+ * TODO: middleware videogame
+ * ! add new videogame
  * @param {*} req.body
+ * ? recibe los atributos por un form
  */
+
 const handAddVideogame = async (req, res) => {
   try {
-    let { name, description, platform, image, date_up, rating, genres } =
+    let { name, description, platforms, image, date_up, rating, genres } =
       req.body;
 
     const newVideogame = await addVideogame(
       name,
       description,
-      platform,
+      platforms,
       image,
       date_up,
       rating,
@@ -24,18 +27,20 @@ const handAddVideogame = async (req, res) => {
 
     res.status(201).json({ data: "videogame created" });
   } catch (e) {
-    res.status(400).json({ error: e.message });
+    res.status(400).json({ error: `fron handAddVideogame ${e.message}` });
   }
 };
 
 /**
- * TODO: Take id from params for view detail videogame
+ * TODO: middleware videogame
+ * ! view detail videogame
+ * * consulta de id tanto de api como de bd
  * @param {*} origin
- * *  puede ser tanto api || bd
+ * ? determina el tipo de id que ingresa
  */
 const handDetailVideogame = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+
   const origin = isNaN(id) ? "bd" : "api";
   try {
     const dataDetail = await getDetailVideogame(id, origin);
@@ -45,6 +50,7 @@ const handDetailVideogame = async (req, res) => {
     res.status(400).json({ error: e.message });
   }
 };
+
 module.exports = {
   handAddVideogame,
   handDetailVideogame,
