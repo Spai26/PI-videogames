@@ -4,7 +4,7 @@ const axios = require("axios");
 const addVideogame = async (
   name,
   description,
-  platform,
+  platforms,
   image,
   date_up,
   rating,
@@ -15,7 +15,7 @@ const addVideogame = async (
   const addGame = await Videogame.create({
     name: name,
     description: description,
-    platform: platform.toString(),
+    platforms: platforms.toString(),
     image: image,
     date_up: date_up,
     rating: rating,
@@ -48,7 +48,7 @@ const getDetailVideogame = async (id, origin) => {
       videogame = {
         name: detail.data.name,
         description: detail.data.description.replace(/<[^>]+>/g, ""),
-        platform: stringPlatforms.toString(),
+        platforms: stringPlatforms.toString(),
         released: detail.data.released,
         image: detail.data.background_image,
         rating: detail.data.rating,
