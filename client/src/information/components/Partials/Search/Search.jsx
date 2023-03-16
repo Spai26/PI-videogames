@@ -1,38 +1,54 @@
 import styles from "./Search.module.css";
-import { icons } from "../../../utils/utils";
-import { Fragment, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import getNameByName from "../../../services/redux/actions/getGameByName";
+import { useDispatch } from "react-redux";
+import SearchSVG from "../../../assets/icons/search/SearchSvg";
 
 const Search = () => {
-  const [value, setValue] = useState("");
+  const dispatch = useDispatch();
+  const [showSearch, setShowSearch] = useState(false);
+  const [values, setValues] = useState("");
+
+  function ShowSearchForm() {
+    setShowSearch(!showSearch);
+  }
 
   function handleOnChange(e) {
-    setValue(e.target.value);
+    setValues(e.target.value);
   }
 
-  function handleOnSubmit(e) {
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (Object.keys(value).length) {
-      e.target.reset();
-    }
-  }
+    dispatch(getNameByName(values));
+    setValues("");
+  };
 
   return (
-    console.log(value),
+    console.log(showSearch),
     (
-      <Fragment>
-        <form onSubmit={handleOnSubmit} className={styles.search_bar}>
+      <div className={styles.navsearch}>
+        <div
+          className={styles.form_button}
+          onClick={ShowSearchForm}
+          serach={showSearch.toString()}
+        >
+          <SearchSVG fill="#2a2a2a" width="20px" height="20px" stroke="3px" />
+        </div>
+
+        <form onSubmit={handleOnSubmit} className={styles.search_form}>
           <input
             type="text"
-            name={value}
+            name="name"
             autoComplete="off"
             placeholder="search anything game"
             onChange={handleOnChange}
+            value={values}
           />
-          <button type="submit">
-            <img src={icons.search} alt="" />
+          <button type="submit" className={styles.btn_search}>
+            <SearchSVG fill="white" width="20px" height="20px" />
           </button>
         </form>
-      </Fragment>
+      </div>
     )
   );
 };
