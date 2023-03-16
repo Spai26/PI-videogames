@@ -12,11 +12,15 @@
   --font-secundary: "Poppins", sans-serif;
   --border-general: 5px;
   --color-base: #fff;
-  --color-primary: #6c757d;
+  --color-primary: #414141;
+  --color-primary-hover: #747474;
   --color-secundary: #333;
-  --color-ternary: red;
+  --color-ternary: #fa5c7c;
+  --color-ternary-hover: #d54e69;
+  --color-four: #727cf5;
+  --color-four-hover: #6169d0;
   --bg-primary: #121212;
   --bg-secundary: #2a2a2a;
-  --max-content: 1500px;
+  --max-content: 1100px;
   --transition-speed: 600ms;
 }

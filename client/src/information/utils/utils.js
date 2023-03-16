@@ -1,27 +1,25 @@
 /* images from landing page */
 
 /* icons from  search*/
-import ihamburger from "../assets/icons/hamburger.svg";
-import isearch from "../assets/icons/search.svg";
-import imenufilter from "../assets/icons/dashboard.svg";
-import icross from "../assets/icons/icons8-multiply-50.svg";
-import idata from "../assets/icons/icons8-base-32.svg";
 import logo from "../assets/icons/gamer.png";
-import inext from "../assets/icons/next_1.svg";
-import ileft from "../assets/icons/left.svg";
-import iadd from "../assets/icons/icons8-add-48.svg";
-import istar from "../assets/icons/star-svgrepo-com.svg";
-import istarYellow from "../assets/icons/istar.svg";
+import imenu from "../assets/img/game.png";
 export const icons = {
   logo: logo,
-  hamburger: ihamburger,
-  cross: icross,
-  search: isearch,
-  filter: imenufilter,
-  bd: idata,
-  next: inext,
-  after: ileft,
-  add: iadd,
-  start: istar,
-  startYellow: istarYellow,
+  imageMenu: imenu,
 };
+
+export const dataOrigin = [
+  { id: 1, name: "api" },
+  { id: 2, name: "bd" },
+];
+
+export const orderData = [
+  { id: 1, name: "ascending" },
+  { id: 2, name: "descending" },
+  
+];
+
+export const nameOrder = [
+  { id: 1, name: "a-z" },
+  { id: 2, name: "z-a" },
+];
