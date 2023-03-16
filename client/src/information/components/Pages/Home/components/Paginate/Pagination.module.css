@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   font-size: clamp(1rem, 0.9524rem + 0.3175vw, 1.25rem);
-  padding: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap;
 }
 .navigation button {
   background: transparent;

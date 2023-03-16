@@ -26,36 +26,42 @@ const Pagination = ({ countGamePage, allItem, currentPage, onChangePage }) => {
 
   return (
     <>
-      <section className={styles.navigation}>
-        <button
-          className={styles.page}
-          disabled={currentPage === 1}
-          onClick={() => handleOnchangePage(currentPage - 1)}
-        >
-          <ArrowLeftSVG fill="white" width="30px" height="30px" />
-        </button>
+      {pagesToShow.length > 0 ? (
+        <section className={styles.navigation}>
+          <button
+            className={styles.page}
+            disabled={currentPage === 1}
+            onClick={() => handleOnchangePage(currentPage - 1)}
+          >
+            <ArrowLeftSVG fill="white" width="30px" height="30px" />
+          </button>
 
-        {pagesToShow &&
-          pagesToShow.map((page, index) => {
-            const isActivePage = currentPage === page;
-            const pageClass = isActivePage
-              ? `${styles.activePage} ${styles.page}`
-              : `${styles.page}`;
-            return (
-              <div key={index} className={pageClass}>
-                <button onClick={() => handleOnchangePage(page)}>{page}</button>
-              </div>
-            );
-          })}
+          {pagesToShow &&
+            pagesToShow.map((page, index) => {
+              const isActivePage = currentPage === page;
+              const pageClass = isActivePage
+                ? `${styles.activePage} ${styles.page}`
+                : `${styles.page}`;
+              return (
+                <div key={index} className={pageClass}>
+                  <button onClick={() => handleOnchangePage(page)}>
+                    {page}
+                  </button>
+                </div>
+              );
+            })}
 
-        <button
-          className={styles.page}
-          disabled={currentPage === maxPage}
-          onClick={() => handleOnchangePage(currentPage + 1)}
-        >
-          <ArrowRightSVG fill="white" width="30px" height="30px" />
-        </button>
-      </section>
+          <button
+            className={styles.page}
+            disabled={currentPage === maxPage}
+            onClick={() => handleOnchangePage(currentPage + 1)}
+          >
+            <ArrowRightSVG fill="white" width="30px" height="30px" />
+          </button>
+        </section>
+      ) : (
+        ""
+      )}
     </>
   );
 };

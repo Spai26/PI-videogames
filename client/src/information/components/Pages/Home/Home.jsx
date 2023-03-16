@@ -6,22 +6,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import getVideogames from "../../../services/redux/actions/getVideogame";
+import setError from "../../../services/redux/actions/setError";
+import ErrorsMsg from "../../Partials/Errors/Errors";
 
 const Home = () => {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.gameSearch);
+  const messageError = useSelector((state) => state.messageError);
 
   /* elements for pagination */
   const [currentPage, setCurrentPage] = useState(1);
-  const [countGamePage, setCountGamePage] = useState(15);
+  const countGamePage = 15;
   const lastPositionPage = currentPage * countGamePage;
   const firstPositionPage = lastPositionPage - countGamePage;
-  const currentVg = videogames.slice(firstPositionPage, lastPositionPage);
+  /* const currentVg =  */
 
   const onChangePage = (page) => {
     setCurrentPage(page);
   };
-  /* en to resource pagination */
+  /* end to resource pagination */
+
+  useEffect(() => {
+    let timer;
+    if (messageError) {
+      timer = setTimeout(() => {
+        dispatch(setError(""));
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messageError]);
 
   useEffect(() => {
     dispatch(getVideogames());
@@ -31,8 +45,8 @@ const Home = () => {
   return (
     <main className="home">
       <Filters />
-
-      <Cards videogames={currentVg} />
+      {messageError && <ErrorsMsg message={messageError} />}
+      {currentPage && <Cards videogames={videogames.slice(firstPositionPage, lastPositionPage)} />}
 
       <Pagination
         countGamePage={countGamePage}
