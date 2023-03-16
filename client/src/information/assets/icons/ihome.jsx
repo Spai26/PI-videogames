@@ -1,6 +1,6 @@
 const HomeSVG = ({
-  width = "50px",
-  height = "50px",
+  width = "20px",
+  height = "20px",
   fill = "#000000",
   stroke = "none",
 }) => {
