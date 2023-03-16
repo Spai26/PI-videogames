@@ -2,7 +2,7 @@ import styles from "./Cards.module.css";
 import Card from "../Card/Card";
 const Cards = ({ videogames }) => {
   return (
-    <div className={styles.gallery}>
+    <div className={styles.gamer_cards}>
       {videogames.map((game, index) => (
         <Card
           key={index}
